@@ -1,0 +1,23 @@
+.main{
+    border: 2px solid;
+    background-color: #ddeeff;
+    padding: 20px;
+}
+
+#timelineWrapper {
+    border: 2px solid;
+    padding: 10px;
+}
+
+.content{
+}
+
+#story_title {
+    font: 24pt;
+    font-weight: bold
+}
+
+#story_date {
+    font: 10pt;
+    font-weight: italic;
+}

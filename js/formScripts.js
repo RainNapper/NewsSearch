@@ -8,6 +8,7 @@ function collectNews() {
 
     data = {};
     $.get(url, function(data) {
+        console.log(data);
         data = JSON.parse(data).HEADLINEML.HL;
         drawTimeline(data);
     });
@@ -19,18 +20,22 @@ function drawTimeline(data) {
     var articleInfo = {};
     var timelineData = [];
 
-    data.forEach(function(item) {
-        articleInfo[item.ID] = { creationTime: item.CT,
-            title: item.HT,
-        urgency: item.UR,
-        topics: item.TO,
-        type: item.TY };
-    timelineData.push( { start: item.CT,
-        end: "",
-        label: item.HT,
-        id: item.ID,
-        urgency: item.UR });
-    });
+    if(data && data !== "null" && data !== "undefined"){
+        data.forEach(function(item) {
+            articleInfo[item.ID] = { creationTime: item.CT,
+                title: item.HT,
+            urgency: item.UR,
+            topics: item.TO,
+            type: item.TY };
+        timelineData.push( { start: item.CT,
+            end: "",
+            label: item.HT,
+            id: item.ID,
+            urgency: item.UR });
+        });
+    } else {
+        alert("No articles found!");
+    }
 
     // Read in the data and construct the timeline
     timeline('#timeline')
